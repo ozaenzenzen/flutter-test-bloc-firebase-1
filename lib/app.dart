@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:test_bloc_1/page/main_page.dart';
+import 'package:test_bloc_1/page/signin_page.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool isLogin = false;
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -23,7 +25,7 @@ class _MyAppState extends State<MyApp> {
                 ScreenUtil.setContext(context);
                 return MediaQuery(
                   data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                  child: const MainPage(),
+                  child: (isLogin == false) ? const SignInPage() : const MainPage(),
                 );
               },
             ),

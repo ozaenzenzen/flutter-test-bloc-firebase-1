@@ -12,6 +12,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan.shade600,
         title: Text("Test Bloc 1"),
       ),
     );
