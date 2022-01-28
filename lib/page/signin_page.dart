@@ -54,6 +54,7 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(
                   height: 40.h,
                   child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
                     controller: usernameController,
                     decoration: InputDecoration(
                       hintText: 'Username',
@@ -86,6 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                 SizedBox(
                   height: 40.h,
                   child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
                     controller: passwordController,
                     decoration: InputDecoration(
                       hintText: 'Password',

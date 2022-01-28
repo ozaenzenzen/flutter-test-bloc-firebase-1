@@ -19,7 +19,8 @@ class _MainPageState extends State<MainPage> {
         title: Text(
           "Test Bloc 1",
           style: GoogleFonts.poppins(
-            fontSize: 16.sp,
+            fontSize: 18.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
