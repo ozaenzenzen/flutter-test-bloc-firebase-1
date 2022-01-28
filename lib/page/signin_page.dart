@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test_bloc_1/bloc/bloc/auth_bloc.dart';
 import 'package:test_bloc_1/page/main_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -105,40 +107,87 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 30.h,
             ),
-            SizedBox(
-              width: 230.w,
-              height: 40.h,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.cyan.shade600,
-                ),
-                onPressed: () {
-                  Get.to(() => const MainPage());
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.network(
-                      "https://freesvg.org/img/1534129544.png",
-                      height: 30.h,
-                      width: 30.h,
+            BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthAuthenticated) {
+                  Get.off(() => const MainPage());
+                }
+                if (state is AuthError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.error),
                     ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Text(
-                      "Sign In With Google",
-                      style: GoogleFonts.poppins(
-                        fontSize: 12.sp,
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is AuthLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state is AuthUnauthenticated) {
+                  // return Container(
+                  //   alignment: Alignment.center,
+                  //   child: Text("Can't SignIn"),
+                  // );
+
+                  return SizedBox(
+                    width: 230.w,
+                    height: 40.h,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.cyan.shade600,
+                      ),
+                      onPressed: () {
+                        // Get.to(() => const MainPage());
+                        _authenticateWithGoogle(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            "https://freesvg.org/img/1534129544.png",
+                            height: 30.h,
+                            width: 30.h,
+                          ),
+                          SizedBox(
+                            width: 20.w,
+                          ),
+                          Text(
+                            "Sign In With Google",
+                            style: GoogleFonts.poppins(
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
+                  );
+                }
+                return Container();
+              },
             ),
           ],
         ),
       ),
+    );
+  }
+
+  // void _authenticationWithEmailAndPassword(context) {
+  //   if (_formKey.currentState!.validate()) {
+  //     BlocProvider.of<AuthBloc>(context).add(
+  //       SignInRequested(
+  //         usernameController.text,
+  //         passwordController.text,
+  //       ),
+  //     );
+  //   }
+  // }
+
+  void _authenticateWithGoogle(context) {
+    BlocProvider.of<AuthBloc>(context).add(
+      GoogleSignInRequested(),
     );
   }
 }
