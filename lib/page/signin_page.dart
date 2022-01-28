@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test_bloc_1/page/main_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -108,7 +110,9 @@ class _SignInPageState extends State<SignInPage> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade600,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const MainPage());
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -120,7 +124,12 @@ class _SignInPageState extends State<SignInPage> {
                     SizedBox(
                       width: 20.w,
                     ),
-                    Text("Sign In With Google"),
+                    Text(
+                      "Sign In With Google",
+                      style: GoogleFonts.poppins(
+                        fontSize: 12.sp,
+                      ),
+                    ),
                   ],
                 ),
               ),
