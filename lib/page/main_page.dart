@@ -33,6 +33,10 @@ class _MainPageState extends State<MainPage> {
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
+          // debugPrint("State now: ${state!}");
+          if(state is AuthLoading){
+            const CircularProgressIndicator();
+          }
           if (state is AuthUnauthenticated) {
             Get.off(() => const SignInPage());
             // Navigator.of(context).pushAndRemoveUntil(
