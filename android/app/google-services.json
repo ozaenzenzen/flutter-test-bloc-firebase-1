@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "168415883758",
+    "project_id": "test-bloc-mac-1",
+    "storage_bucket": "test-bloc-mac-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168415883758:android:7dc3205294b5e6d4739eff",
+        "android_client_info": {
+          "package_name": "com.app.bloc.mac"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168415883758-e9al6mmsmii04kfptm9iabopke4fti78.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrxf6HOmO0GLHfgpOmj5JeE-LaznD4ojY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168415883758-e9al6mmsmii04kfptm9iabopke4fti78.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
