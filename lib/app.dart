@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,15 @@ class _MyAppState extends State<MyApp> {
                     ScreenUtil.setContext(context);
                     return MediaQuery(
                       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: (isLogin == false) ? const SignInPage() : const MainPage(),
+                      child: StreamBuilder(
+                        stream: FirebaseAuth.instance.authStateChanges(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return const MainPage();
+                          }
+                          return const SignInPage();
+                        },
+                      ),
                     );
                   },
                 ),

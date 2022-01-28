@@ -35,16 +35,28 @@ class _MainPageState extends State<MainPage> {
         listener: (context, state) {
           if (state is AuthUnauthenticated) {
             Get.off(() => const SignInPage());
+            // Navigator.of(context).pushAndRemoveUntil(
+            //   MaterialPageRoute(builder: (context) => const SignInPage()),
+            //   (route) => false,
+            // );
           }
-          // TODO: implement listener
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Image.network(
+              user.photoURL ?? "https://freesvg.org/img/1534129544.png",
+              height: 100.h,
+              width: 100.h,
+            ),
             Container(
               alignment: Alignment.center,
               child: Text("${user.displayName}"),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Text("${user.email}"),
             ),
             SizedBox(
               height: 20.h,
