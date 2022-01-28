@@ -50,9 +50,15 @@ class _MainPageState extends State<MainPage> {
               height: 100.h,
               width: 100.h,
             ),
+            SizedBox(
+              height: 10.h,
+            ),
             Container(
               alignment: Alignment.center,
               child: Text("${user.displayName}"),
+            ),
+            SizedBox(
+              height: 10.h,
             ),
             Container(
               alignment: Alignment.center,
