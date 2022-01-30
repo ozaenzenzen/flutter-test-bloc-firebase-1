@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isLogin = false;
+  // bool isLogin = false;
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
