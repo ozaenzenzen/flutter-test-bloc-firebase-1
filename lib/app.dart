@@ -7,7 +7,8 @@ import 'package:test_bloc_1/bloc/bloc/auth_bloc.dart';
 import 'package:test_bloc_1/data/repositories/auth_repository.dart';
 import 'package:test_bloc_1/page/main_page.dart';
 import 'package:test_bloc_1/page/signin_page.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart' as transition;
+import 'package:get/get_navigation/src/routes/transitions_type.dart'
+    as transition;
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -35,23 +36,22 @@ class _MyAppState extends State<MyApp> {
             builder: () {
               return GetMaterialApp(
                 title: 'Test Bloc 1',
-                home: Builder(
-                  builder: (context) {
-                    ScreenUtil.setContext(context);
-                    return MediaQuery(
-                      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                      child: StreamBuilder(
-                        stream: FirebaseAuth.instance.authStateChanges(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return const MainPage();
-                          }
-                          return const SignInPage();
-                        },
-                      ),
-                    );
+                home: StreamBuilder(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return const MainPage();
+                    }
+                    return const SignInPage();
                   },
                 ),
+                builder: (context, widget) {
+                  ScreenUtil.setContext(context);
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: widget ?? const SizedBox(),
+                  );
+                },
                 defaultTransition: transition.Transition.cupertino,
               );
             }),
