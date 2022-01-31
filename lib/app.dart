@@ -19,6 +19,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // bool isLogin = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
@@ -32,6 +34,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ],
         child: ScreenUtilInit(
+            key: _scaffoldKey,
             designSize: const Size(340, 640),
             builder: () {
               return GetMaterialApp(
