@@ -31,6 +31,7 @@ class _MainPageState extends State<MainPage> {
     //     orientation: Orientation.portrait);
 
     return ScreenUtilInit(
+      key: widget.key,
       designSize: const Size(360, 690),
       builder: () => Scaffold(
         appBar: AppBar(
