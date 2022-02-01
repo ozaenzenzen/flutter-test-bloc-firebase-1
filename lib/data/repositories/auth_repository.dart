@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
@@ -52,14 +53,26 @@ class AuthRepository {
 
   Future<void> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn(
+        scopes: [
+          'email',
+          'https://www.googleapis.com/auth/contacts.readonly',
+        ],
+      ).signIn();
 
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      debugPrint("googleUser: $googleUser");
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      debugPrint("googleAuth: $googleAuth");
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
+
+      debugPrint("credential: $credential");
 
       await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
