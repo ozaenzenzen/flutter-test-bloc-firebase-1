@@ -21,19 +21,11 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    // ScreenUtil.init(
-    //     BoxConstraints(
-    //         maxWidth: MediaQuery.of(context).size.width,
-    //         maxHeight: MediaQuery.of(context).size.height),
-    //     designSize: const Size(360, 690),
-    //     context: context,
-    //     minTextAdapt: true,
-    //     orientation: Orientation.portrait);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan.shade600,
         centerTitle: true,
+        elevation: 0,
         title: Text(
           "Test Bloc 1",
           style: GoogleFonts.poppins(
@@ -89,6 +81,7 @@ class _MainPageState extends State<MainPage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.cyan.shade600,
+                elevation: 0,
               ),
               onPressed: () {
                 context.read<AuthBloc>().add(SignOutRequested());
