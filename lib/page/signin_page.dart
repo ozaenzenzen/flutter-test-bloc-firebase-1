@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_bloc_1/bloc/bloc/auth_bloc.dart';
 import 'package:test_bloc_1/page/main_page.dart';
+import 'package:test_bloc_1/page/signup_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -212,6 +213,14 @@ class _SignInPageState extends State<SignInPage> {
                           color: Colors.white,
                           child: Image.network(
                             "https://freesvg.org/img/1534129544.png",
+                            errorBuilder: (context, error, stackTrace) {
+                              return Text(
+                                "Google Image",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12.sp,
+                                ),
+                              );
+                            },
                             height: 30.h,
                             width: 30.h,
                           ),
@@ -224,15 +233,15 @@ class _SignInPageState extends State<SignInPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Alredy have an account? ',
+                            "Don't have an account? ",
                             style: GoogleFonts.poppins(
                               fontSize: 11.sp,
                             ),
                           ),
                           InkWell(
                             onTap: () {
-                              //
-                              debugPrint("debugPrint");
+                              Get.to(() => const SignUpPage());
+                              // debugPrint("debugPrint");
                             },
                             child: Text(
                               'Sign Up',
