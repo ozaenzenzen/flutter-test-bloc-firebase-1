@@ -62,8 +62,7 @@ class AuthRepository {
 
       debugPrint("googleUser: $googleUser");
 
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
       debugPrint("googleAuth: $googleAuth");
 

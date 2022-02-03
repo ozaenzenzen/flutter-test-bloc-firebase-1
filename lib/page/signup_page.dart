@@ -65,9 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      return value != null && !EmailValidator.validate(value)
-                          ? 'Enter a valid email'
-                          : null;
+                      return value != null && !EmailValidator.validate(value) ? 'Enter a valid email' : null;
                     },
                   ),
                   const SizedBox(
@@ -82,9 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
-                      return value != null && value.length < 6
-                          ? "Enter min. 6 characters"
-                          : null;
+                      return value != null && value.length < 6 ? "Enter min. 6 characters" : null;
                     },
                   ),
                   const SizedBox(
